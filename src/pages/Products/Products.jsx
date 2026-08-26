@@ -1,7 +1,7 @@
 
 function Products() {
   return (
-    <div>Products</div>
+    <div className="text-2xl font-bold text-sky-500">Products</div>
   )
 }
 
