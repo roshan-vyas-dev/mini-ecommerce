@@ -33,7 +33,6 @@ function App() {
   }
 
   function addQuantity(productId) {
-
     setCart(
       cart.map((item) => {
         if (item.product.id === productId) {
@@ -43,13 +42,38 @@ function App() {
           };
         }
         return item;
-      })
+      }),
+    );
+  }
+
+  function decreaseQuantity(productId) {
+    const updatedCart = cart.filter((item) => item.product.id !== productId);
+    const cartItem = cart.find((item) => item.product.id === productId);
+    if (cartItem.quantity === 1) {
+      setCart(updatedCart);
+      return;
+    }
+    setCart(
+      cart.map((item) => {
+        if (item.product.id === productId) {
+         
+          return {
+            ...item,
+            quantity: item.quantity - 1,
+          };
+        }
+        return item;
+      }),
     );
   }
   return (
     <div>
       <Products addToCart={addToCart} />
-      <Cart cart={cart} addQuantity={addQuantity} />
+      <Cart
+        cart={cart}
+        addQuantity={addQuantity}
+        decreaseQuantity={decreaseQuantity}
+      />
     </div>
   );
 }

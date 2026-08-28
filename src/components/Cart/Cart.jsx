@@ -1,4 +1,4 @@
-function Cart({ cart,addQuantity }) {
+function Cart({ cart,addQuantity,decreaseQuantity }) {
   const cartTotal = cart.reduce((total, item) => {
     return total + item.product.price * item.quantity;
   }, 0);
@@ -16,6 +16,7 @@ function Cart({ cart,addQuantity }) {
             {(item.product.price * item.quantity).toLocaleString("en-IN")}
           </p>
           <button onClick={()=>addQuantity(item.product.id)}>+</button>
+          <button onClick={()=>decreaseQuantity(item.product.id)}>-</button>
         </div>
       ))}
 
