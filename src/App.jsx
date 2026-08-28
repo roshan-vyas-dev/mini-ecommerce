@@ -1,3 +1,4 @@
+import Cart from "./components/Cart/Cart";
 import Products from "./pages/Products/Products";
 import { useState } from "react";
 
@@ -30,10 +31,25 @@ function App() {
       ]);
     }
   }
+
+  function addQuantity(productId) {
+
+    setCart(
+      cart.map((item) => {
+        if (item.product.id === productId) {
+          return {
+            ...item,
+            quantity: item.quantity + 1,
+          };
+        }
+        return item;
+      })
+    );
+  }
   return (
     <div>
       <Products addToCart={addToCart} />
-      <pre>{JSON.stringify(cart, null, 2)}</pre>
+      <Cart cart={cart} addQuantity={addQuantity} />
     </div>
   );
 }
