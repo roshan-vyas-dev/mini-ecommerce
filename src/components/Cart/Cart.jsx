@@ -1,4 +1,4 @@
-function Cart({ cart,addQuantity,decreaseQuantity,removeFromCart }) {
+function Cart({ cart, addQuantity, decreaseQuantity, removeFromCart }) {
   const cartTotal = cart.reduce((total, item) => {
     return total + item.product.price * item.quantity;
   }, 0);
@@ -15,9 +15,25 @@ function Cart({ cart,addQuantity,decreaseQuantity,removeFromCart }) {
             Total: ₹
             {(item.product.price * item.quantity).toLocaleString("en-IN")}
           </p>
-          <button onClick={()=>addQuantity(item.product.id)}>+</button>
-          <button onClick={()=>decreaseQuantity(item.product.id)}>-</button>
-          <button onClick={()=>removeFromCart(item.product.id)}>Remove</button>
+          <button
+            onClick={() => addQuantity(item.product.id)}
+            className="p-2 border rounded-lg bg-green-400 text-white"
+          >
+            +
+          </button>
+
+          <button
+            onClick={() => decreaseQuantity(item.product.id)}
+            className="p-2 border rounded-lg bg-red-400 text-white"
+          >
+            -
+          </button>
+          <button
+            onClick={() => removeFromCart(item.product.id)}
+            className="p-2 border rounded-lg bg-red-600 text-white"
+          >
+            Remove
+          </button>
         </div>
       ))}
 
