@@ -1,4 +1,4 @@
-function Cart({ cart,addQuantity,decreaseQuantity }) {
+function Cart({ cart,addQuantity,decreaseQuantity,removeFromCart }) {
   const cartTotal = cart.reduce((total, item) => {
     return total + item.product.price * item.quantity;
   }, 0);
@@ -17,6 +17,7 @@ function Cart({ cart,addQuantity,decreaseQuantity }) {
           </p>
           <button onClick={()=>addQuantity(item.product.id)}>+</button>
           <button onClick={()=>decreaseQuantity(item.product.id)}>-</button>
+          <button onClick={()=>removeFromCart(item.product.id)}>Remove</button>
         </div>
       ))}
 

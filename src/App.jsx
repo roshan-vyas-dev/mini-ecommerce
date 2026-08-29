@@ -56,7 +56,6 @@ function App() {
     setCart(
       cart.map((item) => {
         if (item.product.id === productId) {
-         
           return {
             ...item,
             quantity: item.quantity - 1,
@@ -66,6 +65,12 @@ function App() {
       }),
     );
   }
+
+  function removeFromCart(productId) {
+    const updatedCart = cart.filter((item)=>item.product.id!==productId);
+    setCart(updatedCart);
+
+  }
   return (
     <div>
       <Products addToCart={addToCart} />
@@ -73,6 +78,7 @@ function App() {
         cart={cart}
         addQuantity={addQuantity}
         decreaseQuantity={decreaseQuantity}
+        removeFromCart={removeFromCart}
       />
     </div>
   );
