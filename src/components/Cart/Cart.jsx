@@ -43,7 +43,9 @@ function Cart({ cart, addQuantity, decreaseQuantity, removeFromCart }) {
         </div>
       ))}
 
-      <p>Cart Total :{cartTotal}</p>
+      <div className="border-t pt-3">
+        <p className="text-2xl font-semibold">Cart Total : ₹{cartTotal}</p>
+      </div>
     </div>
   );
 }
