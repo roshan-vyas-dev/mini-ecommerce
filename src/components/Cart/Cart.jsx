@@ -1,12 +1,16 @@
 function Cart({ cart, addQuantity, decreaseQuantity, removeFromCart }) {
+  if (cart.length === 0) {
+    return <p>Your cart is empty</p>;
+  }
   const cartTotal = cart.reduce((total, item) => {
     return total + item.product.price * item.quantity;
   }, 0);
   return (
-    <div>
+    <div className="p-4 space-y-4">
+      <h2 className="font-semibold text-2xl mb-3">Your Cart</h2>
       {cart.map((item) => (
-        <div className="border rounded p-3 shadow-sm flex gap-4">
-          <p key={item.product.id}>
+        <div className="border rounded p-3 shadow-sm flex flex-wrap gap-4 " key={item.product.id}>
+          <p >
             {item.product.name} x {item.quantity}
           </p>
 
@@ -21,6 +25,8 @@ function Cart({ cart, addQuantity, decreaseQuantity, removeFromCart }) {
           >
             +
           </button>
+
+          <span className="font-semibold ">{item.quantity}</span>
 
           <button
             onClick={() => decreaseQuantity(item.product.id)}
