@@ -49,6 +49,10 @@ function App() {
   function decreaseQuantity(productId) {
     const updatedCart = cart.filter((item) => item.product.id !== productId);
     const cartItem = cart.find((item) => item.product.id === productId);
+    if (!cartItem) {
+      return;
+
+    }
     if (cartItem.quantity === 1) {
       setCart(updatedCart);
       return;
