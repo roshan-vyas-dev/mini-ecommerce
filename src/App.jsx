@@ -1,11 +1,11 @@
-import Cart from "./components/Cart/Cart";
-import Products from "./pages/Products/Products";
+import AppRoutes from "./AppRoutes";
 import { useState } from "react";
 
 function App() {
   const [cart, setCart] = useState([]);
 
   function addToCart(product) {
+    
     const existingProduct = cart.find((item) => item.product.id === product.id);
 
     if (existingProduct) {
@@ -51,7 +51,6 @@ function App() {
     const cartItem = cart.find((item) => item.product.id === productId);
     if (!cartItem) {
       return;
-
     }
     if (cartItem.quantity === 1) {
       setCart(updatedCart);
@@ -71,20 +70,17 @@ function App() {
   }
 
   function removeFromCart(productId) {
-    const updatedCart = cart.filter((item)=>item.product.id!==productId);
+    const updatedCart = cart.filter((item) => item.product.id !== productId);
     setCart(updatedCart);
-
   }
   return (
-    <div>
-      <Products addToCart={addToCart} />
-      <Cart
-        cart={cart}
-        addQuantity={addQuantity}
-        decreaseQuantity={decreaseQuantity}
-        removeFromCart={removeFromCart}
-      />
-    </div>
+    <AppRoutes
+      cart={cart}
+      addToCart={addToCart}
+      addQuantity={addQuantity}
+      decreaseQuantity={decreaseQuantity}
+      removeFromCart={removeFromCart}
+    />
   );
 }
 

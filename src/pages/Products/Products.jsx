@@ -1,17 +1,22 @@
-import products from "../../data/products"
-import ProductCard from "../../components/ProductCard/ProductCard"
+import products from "../../data/products";
+import ProductCard from "../../components/ProductCard/ProductCard";
 
-function Products({addToCart}) {
+function Products({ addToCart }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div>
+    
 
-      {products.map((product)=>(
-        <ProductCard key={product.id} product={product} addToCart={addToCart}/>
-      ))}
-
-
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {products.map((product) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            addToCart={addToCart}
+          />
+        ))}
+      </div>
     </div>
-  )
+  );
 }
 
-export default Products
+export default Products;
