@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Products from "./pages/Products/Products";
 import Checkout from "./pages/Checkout";
 import Cart from "./components/Cart/Cart";
+import ProductDetails from "./pages/ProductDetails/ProductDetails";
 
 function AppRoutes({
   cart,
@@ -39,6 +40,10 @@ function AppRoutes({
         }
       />
       <Route path="/checkout" element={<Checkout cart={cart} />} />
+      <Route
+        path="/products/:productId"
+        element={<ProductDetails addToCart={addToCart} />}
+      />
     </Routes>
   );
 }
