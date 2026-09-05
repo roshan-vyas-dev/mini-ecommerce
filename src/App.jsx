@@ -5,7 +5,6 @@ function App() {
   const [cart, setCart] = useState([]);
 
   function addToCart(product) {
-    
     const existingProduct = cart.find((item) => item.product.id === product.id);
 
     if (existingProduct) {
@@ -73,6 +72,9 @@ function App() {
     const updatedCart = cart.filter((item) => item.product.id !== productId);
     setCart(updatedCart);
   }
+  function handlePlaceOrder() {
+    setCart([]);
+  }
   return (
     <AppRoutes
       cart={cart}
@@ -80,6 +82,7 @@ function App() {
       addQuantity={addQuantity}
       decreaseQuantity={decreaseQuantity}
       removeFromCart={removeFromCart}
+      onPlaceOrder={handlePlaceOrder}
     />
   );
 }

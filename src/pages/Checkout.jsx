@@ -1,10 +1,12 @@
 import { useState } from "react";
 
-function Checkout({ cart }) {
+function Checkout({ cart, onPlaceOrder }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [orderPlaced, setOrderPlaced] = useState(false);
+  const [error, setError] = useState("");
 
-  if (cart.length === 0) {
+  if (cart.length === 0 && !orderPlaced) {
     return (
       <div className="p-6 text-center">
         <h1 className="text-2xl font-bold">Your cart is empty</h1>
@@ -20,6 +22,27 @@ function Checkout({ cart }) {
     0,
   );
 
+  function handleSubmit() {
+  
+   if (!name.trim() || !email.trim()) {
+      setError("Please enter your name and email.");
+      return;
+    }
+
+    onPlaceOrder();
+    setOrderPlaced(true);
+  }
+
+  if (orderPlaced) {
+    return (
+      <div className="p-6 text-center">
+        <h1 className="text-3xl font-bold">Order Placed Successfully!</h1>
+
+        <p className="mt-2 text-gray-600">Thank you for your order.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="mx-auto max-w-3xl space-y-6 p-4">
       <h1 className="text-3xl font-bold">Checkout</h1>
@@ -29,10 +52,7 @@ function Checkout({ cart }) {
 
         <div className="space-y-4">
           <div>
-            <label
-              htmlFor="name"
-              className="mb-1 block font-medium"
-            >
+            <label htmlFor="name" className="mb-1 block font-medium">
               Name
             </label>
 
@@ -47,10 +67,7 @@ function Checkout({ cart }) {
           </div>
 
           <div>
-            <label
-              htmlFor="email"
-              className="mb-1 block font-medium"
-            >
+            <label htmlFor="email" className="mb-1 block font-medium">
               Email
             </label>
 
@@ -63,6 +80,7 @@ function Checkout({ cart }) {
               className="w-full rounded border p-2"
             />
           </div>
+          {error && <p className="text-sm text-red-600">{error}</p>}
         </div>
       </section>
 
@@ -76,7 +94,7 @@ function Checkout({ cart }) {
               className="flex justify-between gap-4 border-b pb-3"
             >
               <div>
-                <p className="font-medium">{item.product.title}</p>
+                <p className="font-medium">{item.product.name}</p>
                 <p className="text-sm text-gray-600">
                   Quantity: {item.quantity}
                 </p>
@@ -98,6 +116,7 @@ function Checkout({ cart }) {
       <button
         type="button"
         className="w-full rounded bg-black px-4 py-3 font-semibold text-white"
+        onClick={handleSubmit}
       >
         Place Order
       </button>

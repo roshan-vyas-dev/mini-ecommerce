@@ -10,6 +10,7 @@ function AppRoutes({
   addQuantity,
   decreaseQuantity,
   removeFromCart,
+  onPlaceOrder
 }) {
   return (
     <Routes>
@@ -39,7 +40,7 @@ function AppRoutes({
           />
         }
       />
-      <Route path="/checkout" element={<Checkout cart={cart} />} />
+      <Route path="/checkout" element={<Checkout cart={cart}  onPlaceOrder={onPlaceOrder} />} />
       <Route
         path="/products/:productId"
         element={<ProductDetails addToCart={addToCart} />}
